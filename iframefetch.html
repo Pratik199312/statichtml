@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+    <title> Web chat integration </title>
+    <?php
+    $URL = "https://healthcare-bot-pbqtnaeewbaqi.azurewebsites.net/";
+
+    $domain = file_get_contents($URL);
+
+    echo $domain;
+?>
+<script type="text/javascript">
+    var availableTags = ["Thanks for help", "Please connect to live agent", "I want to consult doctor", "I want to book appointment", "I want to schedule test for diabetes"]; 
+    
+    $(window).on('load',function(){
+       // $("#myButton").on('click', function(){alert($("#botiframe").contents().find("html").html());})
+        $('#botiframe').contents().find('.webchat__send-box-text-box__input').autocomplete({
+        // $('#botiframe').contents().find('.textinput').autocomplete({  
+           minLength:7,   
+           delay:700,
+           source: availableTags,
+           autoFocus:true
+    });
+    })
+    
+</script>
+</head>
+<body>
+    <!-- START: Demo website content: Tobe removed later-->
+    <?php
+        $array = file("https://qateamresources.blob.core.windows.net/images/data.txt");
+        ?>
+    
+        
+    <iframe id="botiframe" src="https://healthcare-bot-pbqtnaeewbaqi.azurewebsites.net/" width="80%" height="500px"></iframe>
+    <!-- <iframe id="botiframe" src="file4.html" width="80%" height="500px"></iframe> --> -->
+
+</body>
+</html>
